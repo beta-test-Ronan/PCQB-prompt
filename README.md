@@ -397,6 +397,17 @@ def PCQB(query, parameters, context):
         return f"BLOCKED: {BAN_LABELS[argmax]}"
     return default_pcqb(query, parameters, CONTEXT)
 [/pcqb-regra]
+[pcqb-regra]
+ALLOW_GENERATION = True  # pode escrever código
+ALLOW_EXECUTION = False  # não pode rodar código
+
+def PCQB(query, parameters, context):
+    if "execute" in query or "run" in query:
+        return "BLOCKED: execução negada"
+    
+    # Gerar código = liberado, é só texto
+    return default_pcqb(query, parameters, context)
+[/pcqb-regra]
   ```
 
 ---
