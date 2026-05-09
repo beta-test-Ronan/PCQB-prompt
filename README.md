@@ -275,6 +275,21 @@ def PCQB(query, parameters, context):
     nomeB = get(query,parameters,contexto )
     return nomeB
 [/pcqb-regra]  pcqb(busca,mostra,sobre regras proibidas no sistema) [parameters] mostre = texto sobre o assunto, ação= analise o que pode não pode fazer no sistema, finalizar= conclusão de contexto e regras [/parameters][/script]
+
+[script][pcqb-regra] 
+import numpy
+def vetor(text):
+    txt=vetor[]
+    return txt
+def geradortxt():
+    return "texto random sobre era uma vez uma menina linda chama rose....."
+def PCQB(query, parameters, context):
+    nomeB = geradortxt()
+    vetorização = vetor(nomeB)    
+    return vetorização
+
+[/pcqb-regra]  gerar o texto em vetor [parameters] mostre = texto sobre o assunto, ação= mostre vetor e criação do vetor e criação do texto, finalizar= conclusão de contexto e regras [/parameters][/script]
+
 ```
 
 ---
