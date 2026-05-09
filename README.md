@@ -373,18 +373,15 @@ The framework only structures prompt execution and response reporting.
 
 ---
 
-# Repository Structure
+#  Structure
 
 ```text
-pcqb/
-├── docs/
-├── examples/
-├── benchmarks/
-├── experiments/
-├── prompts/
-├── papers/
-└── README.md
-```
+  pcqb/
+  1. Bootstrap: LLM server starts
+  2. Cache: Runs load_bank_policy() → BAN_VECS is stored in RAM/VRAM
+  3. Context: MODEL + BAN_VECS + threshold 0.85 = active context
+  4. Runtime: Every query only executes (q_vec @ BAN_VECS.T) → 0.2ms
+  ```
 
 ---
 
