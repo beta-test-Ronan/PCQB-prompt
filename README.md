@@ -381,6 +381,22 @@ The framework only structures prompt execution and response reporting.
   2. Cache: Runs load_bank_policy() → BAN_VECS is stored in RAM/VRAM
   3. Context: MODEL + BAN_VECS + threshold 0.85 = active context
   4. Runtime: Every query only executes (q_vec @ BAN_VECS.T) → 0.2ms
+[pcqb-regra]
+# Roda 1x no boot do servidor
+BAN_VECS, BAN_LABELS = torch.load('bank_policy.pt').cuda()
+MODEL = AutoModel.from_pretrained('bert-base').cuda()
+CONTEXT = {"threshold": 0.85, "siem": "kafka://logs"}
+
+def PCQB(query, parameters, context):
+    # Usa contexto já cacheado
+    q_vec = MODEL(query) # 768d direto da VRAM
+    sim = (q_vec @ BAN_VECS.T).max()
+    log_to_siem(query, sim, CONTEXT["siem"])
+
+    if sim > CONTEXT["threshold"]:
+        return f"BLOCKED: {BAN_LABELS[argmax]}"
+    return default_pcqb(query, parameters, CONTEXT)
+[/pcqb-regra]
   ```
 
 ---
