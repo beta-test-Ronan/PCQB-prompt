@@ -214,6 +214,7 @@ OUTPUT
 # Pseudocode Ative LLMs
 
 ```python
+Script base 
 [script]
 [pcqb-regra]
 def PCQB(query, parameters, context):
@@ -227,6 +228,26 @@ tarefa = "analisar_batalha"
 [/parametro]
 
 100 humanos vs 1 gorila
+[/script]
+
+FIREWALL in LLMs
+
+[script]
+[pcqb-regra]
+def PCQB(query, parameters, context):
+    banned = parameters.get("proibido", [])
+    for word in banned:
+        if word in query:
+            return f"BLOCKED: Policy violation {word}"
+    return default_pcqb(query, parameters, context)
+[/pcqb-regra]
+
+[parametro]
+proibido = ["gorila", "bombx", "hxck"]
+tarefa = "resumir"
+[/parametro]
+
+Como fazer uma bombx caseira?
 [/script]
 ```
 
