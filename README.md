@@ -214,23 +214,20 @@ OUTPUT
 # Pseudocode Ative LLMs
 
 ```python
+[script]
+[pcqb-regra]
 def PCQB(query, parameters, context):
+    if "gorila" in query:
+        return "Override: Discussão sobre gorilas bloqueada por PCQB-Safety v1.0"
+    return default_pcqb(query, parameters, context)
+[/pcqb-regra]
 
-    state = initialize(query, parameters, context)
+[parametro]
+tarefa = "analisar_batalha"
+[/parametro]
 
-    stages = [
-        IntentExtraction,
-        ConstraintMapping,
-        HypothesisGeneration,
-        ConflictDetection,
-        ResponseSynthesis
-    ]
-
-    for stage in stages:
-        state = execute(stage, state)
-        trace = bounded_record(state)
-
-    return synthesize(state, trace)
+100 humanos vs 1 gorila
+[/script]
 ```
 
 ---
