@@ -417,7 +417,7 @@ def PCQB(query, parameters, context):
 ```bibtex
 @misc{pcqb2026,
   title={PCQB: Parameterized Cognitive Query Bootstrapping for Verifiable LLM Introspection},
-  author={Anonymous},
+  author={Ronan Bastos},
   year={2026},
   note={Research framework for bounded introspective prompting}
 }
